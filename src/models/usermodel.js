@@ -14,12 +14,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       lowercase: true,
+      unique: true, // Ensure email uniqueness
     },
     password: {
       type: String,
       required: [true, "Password is required"],
     },
-    isemailVerified: {
+    isEmailVerified: {
       type: Boolean,
       default: false,
     },
@@ -27,12 +28,18 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    // Define roles if needed
+    roles: {
+      type: [String],
+      default: ['user'], // Default role can be set
+    },
   },
   {
     timestamps: true,
   }
 );
 
+// Hash the password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
@@ -42,15 +49,17 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.isPasswordcorrect = async function (password) {
+// Method to compare passwords
+userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.generateAccessToken = async function () {
+// Method to generate an access token
+userSchema.methods.generateAccessToken = function () {
   return Jwt.sign(
     {
       _id: this._id,
-      emial: this.email,
+      email: this.email,
       roles: this.roles,
     },
     appconfig.ACCESS_TOKEN_KEY,
@@ -59,7 +68,9 @@ userSchema.methods.generateAccessToken = async function () {
     }
   );
 };
-userSchema.methods.generateRefreshToken = async function () {
+
+// Method to generate a refresh token
+userSchema.methods.generateRefreshToken = function () {
   return Jwt.sign(
     {
       _id: this._id,

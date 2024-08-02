@@ -1,6 +1,6 @@
 import UserModel from "../models/usermodel.js";
 
-const userregisterController = async (req, res) => {
+const usersignupController = async (req, res) => {
   try {
     const { fullname, phonenumber, email, password } = req.body;
 
@@ -41,4 +41,4 @@ const userregisterController = async (req, res) => {
   }
 };
 
-export default userregisterController;
+export default usersignupController;

@@ -2,7 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import getnewToken from "../middlewares/getnewToken.js";
 import {
-  userregisterController,
+  usersignupController,
   userloginController,
   userprofileController,
   userlogoutController,
@@ -15,10 +15,10 @@ const Authroutes = Router();
 
 
 
-Authroutes.route("/signup").post(userregisterController);
+Authroutes.route("/signup").post(usersignupController);
 Authroutes.route("/login").post(userloginController);
-Authroutes.route("/user-logout").post(userlogoutController);
-Authroutes.route("/user-passwordChange").post(userpasswordChangeController);
+Authroutes.route("/logout").post(userlogoutController);
+Authroutes.route("/passwordchange").post(userpasswordChangeController);
 
 
 

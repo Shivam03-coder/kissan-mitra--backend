@@ -20,6 +20,6 @@ app.use(
 
 import { Authroutes } from "./routes/userRoute.js";
 
-app.use("/api/v1/chat-app", Authroutes);
+app.use("/api/v1/kissan-mitra", Authroutes);
 
 export { app };

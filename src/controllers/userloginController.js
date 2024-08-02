@@ -11,46 +11,43 @@ const userloginController = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         status: "failed",
-        message: `Invali email or password`,
+        message: "Invalid email or password",
       });
     }
 
-    const isMatchpassword = await user.isPasswordcorrect(password);
+    const isMatchPassword = await user.isPasswordCorrect(password);
+    console.log("🚀 ~ userloginController ~ isMatchPassword:", isMatchPassword);
 
-    if (!isMatchpassword) {
+    if (!isMatchPassword) {
       return res.status(401).json({
         status: "failed",
-        message: `Invalid  user email and password`,
+        message: "Invalid email or password",
       });
     }
 
     // GENERATE TOKENS
-
     const { accessToken, refreshToken } = await generateTokens(user._id);
 
-    // set isAuthenticated true
-
+    // Set isAuthenticated to true
     user.isAuthenticated = true;
     await user.save();
 
     // Send cookies
-
     setTokenscookies(res, accessToken, refreshToken);
 
-    // send isAuthenticated as cookie to user
+    // Send isAuthenticated as a cookie
+    res.cookie("isUserAuthenticated", user.isAuthenticated);
 
-    res.cookie("isUserAuthentucated", user.isAuthenticated);
-
-    // Response after user successfully login
-
+    // Response after successful login
     res.status(200).json({
       status: "success",
-      message: "User login successfull",
+      message: "User login successful",
     });
   } catch (error) {
+    console.error("Error during login:", error);
     res.status(500).json({
       status: "failed",
-      message: `Unable to login ! : ${error}`,
+      message: `Unable to login! ${error.message}`,
     });
   }
 };
