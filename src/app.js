@@ -12,7 +12,7 @@ app.use(passport.initialize());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: appconfig.APP_BASE_URL,
+    origin: appconfig.REACT_APP_BASE_URL,
     credentials: true,
     optionsSuccessStatus: 200,
   })

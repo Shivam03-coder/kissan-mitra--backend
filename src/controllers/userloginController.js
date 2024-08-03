@@ -16,7 +16,6 @@ const userloginController = async (req, res) => {
     }
 
     const isMatchPassword = await user.isPasswordCorrect(password);
-    console.log("🚀 ~ userloginController ~ isMatchPassword:", isMatchPassword);
 
     if (!isMatchPassword) {
       return res.status(401).json({
@@ -44,7 +43,6 @@ const userloginController = async (req, res) => {
       message: "User login successful",
     });
   } catch (error) {
-    console.error("Error during login:", error);
     res.status(500).json({
       status: "failed",
       message: `Unable to login! ${error.message}`,
