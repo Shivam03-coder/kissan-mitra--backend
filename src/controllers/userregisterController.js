@@ -13,7 +13,7 @@ const userregisterController = async (req, res) => {
     if (existingUser) {
       return res.status(409).json({
         status: "failed",
-        message: "Email alreday registered !",
+        message: "Email already registered !",
       });
     }
 
