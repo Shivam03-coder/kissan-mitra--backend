@@ -20,11 +20,10 @@ app.use(
 );
 
 
-<<<<<<< HEAD
+
 app.use('/api/location', locationRoutes);
 app.use("/api/v1/chat-app", Authroutes);
-=======
 app.use("/api/v1/kissan-mitra", Authroutes);
->>>>>>> origin/main
+
 
 export { app };
