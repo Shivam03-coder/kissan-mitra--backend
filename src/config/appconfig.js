@@ -4,7 +4,7 @@ config();
 const appconfig = {
   URI: process.env.DATABASE_URI,
   PORT: process.env.PORT,
-  APP_BASE_URL: process.env.APP_BASE_URL,
+  REACT_APP_BASE_URL: process.env.REACT_APP_BASE_URL,
   EMAIL_HOST: process.env.EMAIL_HOST,
   EMAIL_PORT: process.env.EMAIL_PORT,
   EMAIL_USER: process.env.EMAIL_USER,

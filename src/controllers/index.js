@@ -1,11 +1,11 @@
-import userregisterController from "./userregisterController.js";
+import usersignupController from "./usersignupController.js";
 import userloginController from "./userloginController.js";
 import userprofileController from "./userprofileController.js";
 import userlogoutController from "./userlogoutController.js";
 import userpasswordChangeController from "./userpasswordChangeController.js";
 
 export {
-  userregisterController,
+  usersignupController,
   userloginController,
   userprofileController,
   userlogoutController,

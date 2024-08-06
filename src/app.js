@@ -13,14 +13,18 @@ app.use(passport.initialize());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: appconfig.APP_BASE_URL,
+    origin: appconfig.REACT_APP_BASE_URL,
     credentials: true,
     optionsSuccessStatus: 200,
   })
 );
 
 
+<<<<<<< HEAD
 app.use('/api/location', locationRoutes);
 app.use("/api/v1/chat-app", Authroutes);
+=======
+app.use("/api/v1/kissan-mitra", Authroutes);
+>>>>>>> origin/main
 
 export { app };
